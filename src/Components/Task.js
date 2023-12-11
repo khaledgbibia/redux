@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
-import { deleteTasks, editTask } from './redux/taskSlice';
+import { completeTodo, deleteTasks, editTask } from './redux/taskSlice';
 import { useDispatch } from 'react-redux';
 
 
@@ -33,6 +33,11 @@ const Task = ({taskInfo}) => {
     
     
   };
+  const completeTodoHandler = (e) => {
+    e.preventDefault();
+    dispatch(completeTodo(taskInfo.id));
+  };
+
 
   
   return (
@@ -48,7 +53,11 @@ const Task = ({taskInfo}) => {
     >
 
 
-     {taskInfo.task} 
+     {taskInfo.isDone ? (
+        <p style={{ color: "green" }}>{taskInfo.task}</p>
+      ) : (
+        <p style={{ color: "red" }}> {taskInfo.task} </p>
+      )} 
      <>
      {/* //////////////////// Check///////////////////////// */}
      
@@ -56,7 +65,7 @@ const Task = ({taskInfo}) => {
   
      >
      <Form.Check aria-label="option 1"  
-     
+     onClick={completeTodoHandler}
      />
 </div>
     {/* //////////////////// delete///////////////////////// */}

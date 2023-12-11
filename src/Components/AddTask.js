@@ -22,7 +22,7 @@ function AddTask() {
   }
   const saveTask=()=>{
     dispatch(addTask(newTask));
-    setNewTask({...newTask, task:"",})
+    setNewTask({...newTask, task:"",isDone:false,})
     
   }
     return (
@@ -34,6 +34,7 @@ function AddTask() {
       value={newTask.task}
       size='lg'
         name='task'
+        
         placeholder='enter your task'
         onChange={change}
       />
